@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
  *
  * @author Clientistrador
  */
-
 @Service
 public class ClientService {
 
@@ -40,14 +39,16 @@ public class ClientService {
     public Optional<Client> getClient(int clientId) {
         return repository.getClient(clientId);
     }
-/**
- * POST
- * @param client
- * @return 
- */
+
+    /**
+     * POST
+     *
+     * @param client
+     * @return
+     */
     public Client save(Client client) {
         //Consultar si se envía el ID
-        if (client.getIdClient()== null) {
+        if (client.getIdClient() == null) {
             return repository.save(client);
         } else {
             //Consultar si existe el registro.
@@ -59,11 +60,13 @@ public class ClientService {
             }
         }
     }
-/**
- * UPDATE
- * @param client
- * @return 
- */
+
+    /**
+     * UPDATE
+     *
+     * @param client
+     * @return
+     */
     public Client update(Client client) {
         if (client.getIdClient() != null) {
             Optional<Client> existClient = repository.getClient(client.getIdClient());
@@ -83,6 +86,9 @@ public class ClientService {
                 if (client.getReservations() != null) {
                     existClient.get().setReservations(client.getReservations());
                 }
+                if (client.getAge()!= null) {
+                    existClient.get().setAge(client.getAge());
+                }
                 return repository.save(existClient.get());
             } else {
                 return client;
@@ -91,11 +97,13 @@ public class ClientService {
             return client;
         }
     }
-/**
- * DELETE
- * @param clientId
- * @return 
- */
+
+    /**
+     * DELETE
+     *
+     * @param clientId
+     * @return
+     */
     public boolean delete(int clientId) {
         Boolean respuesta = getClient(clientId).map(client -> {
             repository.delete(client);

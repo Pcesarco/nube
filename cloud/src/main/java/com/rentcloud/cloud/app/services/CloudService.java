@@ -89,8 +89,9 @@ public class CloudService {
                 if (cloud.getReservations() != null) {
                     existCloud.get().setReservations(cloud.getReservations());
                 }
-
-
+                if (cloud.getYear() != null) {
+                    existCloud.get().setYear(cloud.getYear());
+                }
                 return repository.save(existCloud.get());
             } else {
                 return cloud;

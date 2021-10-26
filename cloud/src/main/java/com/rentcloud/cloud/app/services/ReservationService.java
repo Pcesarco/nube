@@ -97,7 +97,11 @@ public class ReservationService {
             return reservation;
         }
     }
-
+/**
+ * DELETE
+ * @param reservationId
+ * @return 
+ */
     public boolean delete(int reservationId) {
         Boolean respuesta = getReservation(reservationId).map(reservation -> {
             repository.delete(reservation);
